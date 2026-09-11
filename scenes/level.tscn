@@ -1,0 +1,202 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource path="res://scripts/level.gd" type="Script" id="1"]
+[ext_resource path="res://scripts/parallax_backdrop.gd" type="Script" id="2"]
+[ext_resource path="res://scenes/platform.tscn" type="PackedScene" id="3"]
+[ext_resource path="res://scenes/player.tscn" type="PackedScene" id="4"]
+[ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id="5"]
+[ext_resource path="res://scenes/hazard.tscn" type="PackedScene" id="6"]
+[ext_resource path="res://scenes/checkpoint.tscn" type="PackedScene" id="7"]
+[ext_resource path="res://scenes/boss.tscn" type="PackedScene" id="8"]
+[ext_resource path="res://scenes/hud.tscn" type="PackedScene" id="9"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1")
+[node name="Environment" type="Node" parent="."]
+[node name="CanvasModulate" type="CanvasModulate" parent="Environment"]
+color = Color(0.764706, 0.796078, 0.878431, 1)
+[node name="BackgroundLayer" type="CanvasLayer" parent="Environment"]
+layer = -20
+[node name="Backdrop" type="Control" parent="Environment/BackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2")
+
+[node name="Stage" type="Node2D" parent="."]
+[node name="Platforms" type="Node2D" parent="Stage"]
+[node name="Ground_Intro" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(325, 660)
+size = Vector2(650, 120)
+[node name="Ground_CombatA" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(985, 660)
+size = Vector2(520, 120)
+[node name="Ground_CombatB" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(1535, 660)
+size = Vector2(430, 120)
+[node name="Ground_Checkpoint" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(2070, 660)
+size = Vector2(520, 120)
+[node name="Ground_GauntletA" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(2550, 660)
+size = Vector2(340, 120)
+[node name="Ground_GauntletB" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(2945, 660)
+size = Vector2(330, 120)
+[node name="Ground_GauntletC" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(3367.5, 660)
+size = Vector2(405, 120)
+[node name="Ground_PreBoss" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(3835, 660)
+size = Vector2(410, 120)
+[node name="Ground_BossArena" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(4520, 660)
+size = Vector2(900, 120)
+[node name="Ledge_01" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(905, 497)
+size = Vector2(170, 24)
+[node name="Ledge_02" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(1110, 422)
+size = Vector2(140, 24)
+[node name="Ledge_03" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(1535, 517)
+size = Vector2(170, 24)
+[node name="Ledge_04" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(2070, 492)
+size = Vector2(160, 24)
+[node name="Ledge_05" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(2545, 467)
+size = Vector2(150, 24)
+[node name="Ledge_06" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(2897.5, 427)
+size = Vector2(145, 24)
+[node name="Ledge_07" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(3275, 512)
+size = Vector2(150, 24)
+[node name="Ledge_08" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(3462.5, 427)
+size = Vector2(125, 24)
+[node name="Ledge_09" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(3747.5, 507)
+size = Vector2(145, 24)
+[node name="Ledge_10" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(3940, 422)
+size = Vector2(140, 24)
+[node name="Boundary_Left" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(-15, 360)
+size = Vector2(30, 720)
+visible = false
+[node name="Boundary_Right" parent="Stage/Platforms" instance=ExtResource("3")]
+position = Vector2(4987.5, 360)
+size = Vector2(35, 720)
+visible = false
+
+[node name="Hazards" type="Node2D" parent="Stage"]
+[node name="Spikes_Intro" parent="Stage/Hazards" groups=["hazards"] instance=ExtResource("6")]
+position = Vector2(555, 600)
+size = Vector2(72, 28)
+damage = 30
+[node name="PitSpikes_01" parent="Stage/Hazards" groups=["hazards"] instance=ExtResource("6")]
+position = Vector2(685, 755)
+size = Vector2(80, 35)
+damage = 100
+[node name="CycleSpikes_01" parent="Stage/Hazards" groups=["hazards"] instance=ExtResource("6")]
+position = Vector2(1140, 600)
+kind = 1
+size = Vector2(82, 34)
+damage = 28
+period = 2.5
+[node name="PitSpikes_02" parent="Stage/Hazards" groups=["hazards"] instance=ExtResource("6")]
+position = Vector2(1280, 755)
+size = Vector2(75, 35)
+damage = 100
+[node name="ProximitySpears_01" parent="Stage/Hazards" groups=["hazards"] instance=ExtResource("6")]
+position = Vector2(1660, 600)
+kind = 2
+size = Vector2(90, 30)
+damage = 32
+[node name="CycleSpikes_02" parent="Stage/Hazards" groups=["hazards"] instance=ExtResource("6")]
+position = Vector2(2170, 600)
+kind = 1
+size = Vector2(95, 38)
+damage = 30
+period = 2.15
+[node name="PitSpikes_03" parent="Stage/Hazards" groups=["hazards"] instance=ExtResource("6")]
+position = Vector2(2348, 755)
+size = Vector2(90, 35)
+damage = 100
+[node name="ProximitySpears_02" parent="Stage/Hazards" groups=["hazards"] instance=ExtResource("6")]
+position = Vector2(2670, 600)
+kind = 2
+size = Vector2(84, 30)
+damage = 34
+[node name="PitSpikes_04" parent="Stage/Hazards" groups=["hazards"] instance=ExtResource("6")]
+position = Vector2(2748, 755)
+size = Vector2(75, 35)
+damage = 100
+[node name="CycleSpikes_03" parent="Stage/Hazards" groups=["hazards"] instance=ExtResource("6")]
+position = Vector2(3010, 600)
+kind = 1
+size = Vector2(90, 40)
+damage = 32
+period = 1.85
+[node name="PitSpikes_05" parent="Stage/Hazards" groups=["hazards"] instance=ExtResource("6")]
+position = Vector2(3135, 755)
+size = Vector2(75, 35)
+damage = 100
+[node name="ProximitySpears_03" parent="Stage/Hazards" groups=["hazards"] instance=ExtResource("6")]
+position = Vector2(3500, 600)
+kind = 2
+size = Vector2(90, 30)
+damage = 36
+[node name="CycleSpikes_04" parent="Stage/Hazards" groups=["hazards"] instance=ExtResource("6")]
+position = Vector2(3890, 600)
+kind = 1
+size = Vector2(95, 40)
+damage = 34
+period = 1.75
+
+[node name="Actors" type="Node2D" parent="."]
+[node name="Player" parent="Actors" instance=ExtResource("4")]
+position = Vector2(115, 600)
+[node name="Warden_01" parent="Actors" groups=["enemies"] instance=ExtResource("5")]
+position = Vector2(920, 485)
+[node name="Warden_02" parent="Actors" groups=["enemies"] instance=ExtResource("5")]
+position = Vector2(1510, 505)
+[node name="Hexer_01" parent="Actors" groups=["enemies"] instance=ExtResource("5")]
+position = Vector2(2070, 480)
+kind = 1
+[node name="Lurker_01" parent="Actors" groups=["enemies"] instance=ExtResource("5")]
+position = Vector2(2240, 600)
+kind = 2
+[node name="Warden_03" parent="Actors" groups=["enemies"] instance=ExtResource("5")]
+position = Vector2(2520, 455)
+[node name="Hexer_02" parent="Actors" groups=["enemies"] instance=ExtResource("5")]
+position = Vector2(2880, 415)
+kind = 1
+[node name="Lurker_02" parent="Actors" groups=["enemies"] instance=ExtResource("5")]
+position = Vector2(3050, 600)
+kind = 2
+[node name="Warden_04" parent="Actors" groups=["enemies"] instance=ExtResource("5")]
+position = Vector2(3260, 500)
+[node name="Hexer_03" parent="Actors" groups=["enemies"] instance=ExtResource("5")]
+position = Vector2(3440, 415)
+kind = 1
+[node name="Lurker_03" parent="Actors" groups=["enemies"] instance=ExtResource("5")]
+position = Vector2(3810, 600)
+kind = 2
+[node name="Boss" parent="Actors" instance=ExtResource("8")]
+position = Vector2(4625, 600)
+
+[node name="Checkpoints" type="Node2D" parent="."]
+[node name="Midpoint" parent="Checkpoints" instance=ExtResource("7")]
+position = Vector2(1900, 600)
+checkpoint_id = 1
+[node name="PreBoss" parent="Checkpoints" instance=ExtResource("7")]
+position = Vector2(3950, 600)
+checkpoint_id = 2
+[node name="RuntimeEffects" type="Node2D" parent="."]
+[node name="HUD" parent="." instance=ExtResource("9")]

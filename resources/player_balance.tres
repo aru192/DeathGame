@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="PlayerBalance" load_steps=2 format=3]
+
+[ext_resource path="res://resources/player_balance.gd" type="Script" id="1"]
+
+[resource]
+script = ExtResource("1")
+run_speed = 285.0
+acceleration = 2200.0
+deceleration = 2700.0
+jump_velocity = -570.0
+gravity = 1650.0
+fall_gravity_multiplier = 1.22
+jump_cut_multiplier = 0.48
+coyote_time = 0.11
+jump_buffer_time = 0.12
+max_hp = 100
+max_stamina = 100.0
+stamina_regen = 34.0
+dodge_cost = 30.0
+dodge_speed = 650.0
+dodge_duration = 0.24
+dodge_invulnerability = 0.19
+hurt_invulnerability = 0.75
+heal_amount = 45
+heal_time = 0.72
+
